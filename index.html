@@ -38,17 +38,14 @@
       <input type="text" name="name" id="name">
       Phone:
       <input type="text" name="phone" id="phone">
-      Email:
+      *Email:
       <input type="text" name="email" id="email">
 
       <button onclick="addHtmlTableRow();">
         Add
       </button>
       <button onclick="editHtmlTableSelecteRow()">
-        Edit
-      </button>
-      <button onclick="deleteHtmlTableRow()">
-        Delete
+        Save edit
       </button>
 
     </div>
@@ -64,14 +61,9 @@
       phone = document.getElementById("phone").value,
       email = document.getElementById("email").value;
 
-      if(name === '') {
-        alert('Name cannot be empty!')
-        isEmpty = true;
-      }else if(phone === '') {
-        alert('Phone cannot be empty!')
-        isEmpty = true;
-      }else if(email === '') {
+      if(email === '') {
         alert('Email cannot be empty!')
+      }else {
         isEmpty = true;
       }
 
@@ -80,22 +72,28 @@
 
     // add row
     function addHtmlTableRow() {
-      let newRow = table.insertRow(table.length),
-        cell1 = newRow.insertCell(0),
-        cell2 = newRow.insertCell(1),
-        cell3 = newRow.insertCell(2),
-        cell4 = newRow.insertCell(3),
-        cell5 = newRow.insertCell(4),
-        cell6 = newRow.insertCell(5),
-        name = document.getElementById("name").value,
-        phone = document.getElementById("phone").value,
-        email = document.getElementById("email").value;
+      if(checkEmptyInput()) {
+        let rowCount = table.rows.length,
+          newRow = table.insertRow(table.length),
+          cell1 = newRow.insertCell(0),
+          cell2 = newRow.insertCell(1),
+          cell3 = newRow.insertCell(2),
+          cell4 = newRow.insertCell(3),
+          cell5 = newRow.insertCell(4),
+          cell6 = newRow.insertCell(5),
+          name = document.getElementById("name").value,
+          phone = document.getElementById("phone").value,
+          email = document.getElementById("email").value;
 
-      cell2.innerHTML = name;
-      cell3.innerHTML = phone;
-      cell4.innerHTML = email;
-      cell5.innerHTML = cell6.innerHTML + "<button onclick='selectedRowToInput()';>Edit</button>";
-      cell6.innerHTML = cell6.innerHTML + "<button onclick='deleteHtmlTableRow()';>Remove</button>";
+        console.log(rowCount);
+
+        cell1.innerHTML = rowCount;
+        cell2.innerHTML = name;
+        cell3.innerHTML = phone;
+        cell4.innerHTML = email;
+        cell5.innerHTML = cell6.innerHTML + "<button onclick='selectedRowToInput()';>Edit</button>";
+        cell6.innerHTML = cell6.innerHTML + "<button onclick='deleteHtmlTableRow()';>Remove</button>";
+      }
     }
 
 
@@ -126,11 +124,19 @@
 
     // delete row
     function deleteHtmlTableRow() {
-      for (var i = 0; i < table.rows.length ; i++) {
+      let rowCount = table.rows.length;
+
+      for (var i = 1; i < table.rows.length ; i++) {
         table.rows[i].onclick = function() {
           rIndex = this.rowIndex;
+          console.log(rIndex);
 
           table.deleteRow(rIndex);
+
+          for (var n = rIndex; n < table.rows.length ; n++) {
+            table.rows[n].cells[0].innerHTML = table.rows[n].cells[0].innerHTML - 1;
+            console.log('in');
+          }
         }
       }
     }
