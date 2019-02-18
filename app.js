@@ -40,7 +40,7 @@ let rIndex = false, table = document.getElementById("table");
     }
 
     // select row
-    function selectedRowToInput() {
+    function selectedRowToInput(event) {
 
       for (var i = 1; i < table.rows.length ; i++) {
         table.rows[i].onclick = function() {
@@ -51,8 +51,6 @@ let rIndex = false, table = document.getElementById("table");
           console.log(rIndex);
         }
       }
-
-
     }
 
     // clear form
@@ -83,7 +81,7 @@ let rIndex = false, table = document.getElementById("table");
         cell2.innerHTML = name;
         cell3.innerHTML = phone;
         cell4.innerHTML = email;
-        cell5.innerHTML = cell6.innerHTML + "<button onclick='selectedRowToInput()'; class='btn btn-success'>Edit</button>";
+        cell5.innerHTML = cell6.innerHTML + "<button onclick='selectedRowToInput(event)'; class='btn btn-success'>Edit</button>";
         cell6.innerHTML = cell6.innerHTML + "<button onclick='deleteHtmlTableRow()'; class='btn btn-danger'>Remove</button>";
       }
 
