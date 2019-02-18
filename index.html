@@ -133,12 +133,14 @@
 
           table.deleteRow(rIndex);
 
+          // dynamic row number
           for (var n = rIndex; n < table.rows.length ; n++) {
             table.rows[n].cells[0].innerHTML = table.rows[n].cells[0].innerHTML - 1;
-            console.log('in');
           }
         }
       }
+
+      this.onclick = null;
     }
 
   </script>
