@@ -42,7 +42,7 @@ let rIndex = false, table = document.getElementById("table");
     // select row
     function selectedRowToInput() {
 
-      for (var i = 0; i < table.rows.length ; i++) {
+      for (var i = 1; i < table.rows.length ; i++) {
         table.rows[i].onclick = function() {
           rIndex = this.rowIndex;
           document.getElementById("name").value = this.cells[1].innerHTML;
@@ -51,11 +51,8 @@ let rIndex = false, table = document.getElementById("table");
           console.log(rIndex);
         }
       }
-    }
 
-    // cancel selected row
-    function notSelect() {
-      rIndex = false;
+
     }
 
     // clear form
@@ -63,7 +60,6 @@ let rIndex = false, table = document.getElementById("table");
       document.getElementById("name").value = '';
       document.getElementById("phone").value = '';
       document.getElementById("email").value = '';
-      notSelect();
     }
 
     // add row
@@ -87,8 +83,8 @@ let rIndex = false, table = document.getElementById("table");
         cell2.innerHTML = name;
         cell3.innerHTML = phone;
         cell4.innerHTML = email;
-        cell5.innerHTML = cell6.innerHTML + "<button onclick='selectedRowToInput()'; class='bg-orange'>Edit</button>";
-        cell6.innerHTML = cell6.innerHTML + "<button onclick='deleteHtmlTableRow()'; class='bg-red'>Remove</button>";
+        cell5.innerHTML = cell6.innerHTML + "<button onclick='selectedRowToInput()'; class='btn btn-success'>Edit</button>";
+        cell6.innerHTML = cell6.innerHTML + "<button onclick='deleteHtmlTableRow()'; class='btn btn-danger'>Remove</button>";
       }
 
       clearForm();
@@ -131,6 +127,7 @@ let rIndex = false, table = document.getElementById("table");
               table.rows[n].cells[0].innerHTML = table.rows[n].cells[0].innerHTML - 1;
             }
           }
+          break;
         }
       }
     }

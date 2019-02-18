@@ -8,31 +8,6 @@
   margin-top: 50px;
 }
 
-#table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-/*table, th, td {
-  border: 1px solid black;
-}
-
-th {
-  height: 50px;
-}*/
-
-th, td {
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-th {
-  background-color: #4CAF50;
-  color: white;
-}
-
 /*copy*/
 
 input[type=text] {
