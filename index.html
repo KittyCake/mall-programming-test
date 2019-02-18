@@ -16,135 +16,45 @@
         <th>Modify</th>
         <th>Delete</th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>Kitty</td>
-        <td>0912341234</td>
-        <td>kitty@email.com</td>
-        <td><button onclick='selectedRowToInput()';>Edit</button></td>
-        <td><button onclick='deleteHtmlTableRow()';>Remove</button></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Andy</td>
-        <td>0912341234</td>
-        <td>Andy@email.com</td>
-        <td><button onclick='selectedRowToInput()';>Edit</button></td>
-        <td><button onclick='deleteHtmlTableRow()';>Remove</button></td>
-      </tr>
     </table>
     <div id="form">
-      Name:
-      <input type="text" name="name" id="name">
-      Phone:
-      <input type="text" name="phone" id="phone">
-      *Email:
-      <input type="text" name="email" id="email">
+      <div class="row">
+        <div class="col-25">
+          <div class="label">Name:</div>
+        </div>
+        <div class="col-75">
+          <input type="text" name="name" id="name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <div class="label">Phone:</div>
+        </div>
+        <div class="col-75">
+          <input type="text" name="phone" id="phone">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <div class="label">*Email:</div>
+        </div>
+        <div class="col-75">
+          <input type="text" name="email" id="email">
+        </div>
+      </div>
 
-      <button onclick="addHtmlTableRow();">
+      <button onclick="addHtmlTableRow();" class="bg-green">
         Add
       </button>
-      <button onclick="editHtmlTableSelecteRow()">
+      <button onclick="editHtmlTableSelecteRow()" class="bg-green">
         Save edit
       </button>
-
+      <button onclick="clearForm()" class="bg-green">
+        Clear
+      </button>
     </div>
   </div>
 
-  <script>
-    let rIndex, table = document.getElementById("table");
-
-    // check empty
-    function checkEmptyInput() {
-      let isEmpty = false,
-      name = document.getElementById("name").value,
-      phone = document.getElementById("phone").value,
-      email = document.getElementById("email").value;
-
-      if(email === '') {
-        alert('Email cannot be empty!')
-      }else {
-        isEmpty = true;
-      }
-
-      return isEmpty;
-    }
-
-    // add row
-    function addHtmlTableRow() {
-      if(checkEmptyInput()) {
-        let rowCount = table.rows.length,
-          newRow = table.insertRow(table.length),
-          cell1 = newRow.insertCell(0),
-          cell2 = newRow.insertCell(1),
-          cell3 = newRow.insertCell(2),
-          cell4 = newRow.insertCell(3),
-          cell5 = newRow.insertCell(4),
-          cell6 = newRow.insertCell(5),
-          name = document.getElementById("name").value,
-          phone = document.getElementById("phone").value,
-          email = document.getElementById("email").value;
-
-        console.log(rowCount);
-
-        cell1.innerHTML = rowCount;
-        cell2.innerHTML = name;
-        cell3.innerHTML = phone;
-        cell4.innerHTML = email;
-        cell5.innerHTML = cell6.innerHTML + "<button onclick='selectedRowToInput()';>Edit</button>";
-        cell6.innerHTML = cell6.innerHTML + "<button onclick='deleteHtmlTableRow()';>Remove</button>";
-      }
-    }
-
-
-    // select row
-    function selectedRowToInput() {
-
-      for (var i = 0; i < table.rows.length ; i++) {
-        table.rows[i].onclick = function() {
-          rIndex = this.rowIndex;
-          document.getElementById("name").value = this.cells[1].innerHTML;
-          document.getElementById("phone").value = this.cells[2].innerHTML;
-          document.getElementById("email").value = this.cells[3].innerHTML;
-          console.log(rIndex);
-        }
-      }
-    }
-
-    // edit row
-    function editHtmlTableSelecteRow() {
-      let name = document.getElementById("name").value,
-        phone = document.getElementById("phone").value,
-        email = document.getElementById("email").value;
-
-      table.rows[rIndex].cells[1].innerHTML = name;
-      table.rows[rIndex].cells[2].innerHTML = phone;
-      table.rows[rIndex].cells[3].innerHTML = email;
-    }
-
-    // delete row
-    function deleteHtmlTableRow() {
-      let rowCount = table.rows.length;
-
-      for (var i = 1; i < table.rows.length ; i++) {
-        table.rows[i].onclick = function() {
-          rIndex = this.rowIndex;
-          console.log(rIndex);
-
-          table.deleteRow(rIndex);
-
-          // dynamic row number
-          for (var n = rIndex; n < table.rows.length ; n++) {
-            table.rows[n].cells[0].innerHTML = table.rows[n].cells[0].innerHTML - 1;
-          }
-        }
-      }
-
-      this.onclick = null;
-    }
-
-  </script>
-
-  <!-- <script src="app.js"></script> -->
+  <script src="app.js"></script>
 </body>
 </html>
